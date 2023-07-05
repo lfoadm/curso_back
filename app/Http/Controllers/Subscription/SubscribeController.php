@@ -12,6 +12,7 @@ class SubscribeController extends Controller
     {
         $user = auth()->user();
         $user->createOrGetStripeCustomer();
+        //user do commit
 
         try {
             $subscription = $user->newSubscription('default', 'price_1NPxp1DZ1I1u3ORBGJKStW3k')
