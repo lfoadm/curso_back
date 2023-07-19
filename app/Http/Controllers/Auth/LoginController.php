@@ -18,6 +18,7 @@ class LoginController extends Controller
         if (!Auth::attempt($input)) {
             throw new InvalidAuthenticationException();
         }
+        
         $request->session()->regenerate();
 
         return new UserResource(Auth::user());

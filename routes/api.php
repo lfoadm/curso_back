@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\LikeController;
+use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Api\Admin\UserController;
 use App\Http\Controllers\Auth\PasswordForgotController;
 use App\Http\Controllers\Auth\LoginController;
@@ -18,10 +20,15 @@ Route::middleware('auth:sanctum')->group(function() {
     Route::post('/subscribe', SubscribeController::class);
 });
 
-
+//Auth
 Route::post('login', LoginController::class);
 Route::post('logout', LogoutController::class);
 Route::post('register', RegisterController::class);
 Route::post('verify-email', VerifyEmailController::class);
 Route::post('forgot-password', PasswordForgotController::class);
 Route::post('reset-password', PasswordResetController::class);
+
+//Admin Posts / likes
+Route::apiResource('posts', PostController::class);
+Route::post('like/{post}', [LikeController::class, 'likeIt']);
+Route::delete('like/{post}', [LikeController::class, 'unlikeIt']);
