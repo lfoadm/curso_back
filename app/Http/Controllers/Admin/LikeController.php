@@ -13,14 +13,14 @@ class LikeController extends Controller
     {
         $post->like()->create([
             'user_id' => Auth::user()->id,
-            //'user_id' => '1',
+            //'user_id' => '1', //teste postman
         ]);
     }
 
     public function unlikeIt(Post $post)
     {
         $post->like()->where('user_id', Auth::user()->id)->first()->delete();
-        //$post->like()->where('user_id', '1')->first()->delete();
+        //$post->like()->where('user_id', '1')->first()->delete(); //teste postman
         return 'Deleted';
     }
 }
