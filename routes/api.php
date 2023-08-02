@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\LikeController;
 use App\Http\Controllers\Admin\PostController;
+use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Api\Admin\UserController;
 use App\Http\Controllers\Auth\PasswordForgotController;
 use App\Http\Controllers\Auth\LoginController;
@@ -18,7 +19,15 @@ Route::middleware('auth:sanctum')->group(function() {
     Route::get('/me', [MeController::class, 'show']);
     Route::get('/users', [UserController::class, 'index']);
     Route::post('/subscribe', SubscribeController::class);
+    
+    //Roles and Permissions
+    //TODO: Terminar o crud de cadastro de grupo de usuários
+    Route::get('/group-users', [RoleController::class, 'index']);
+    Route::post('/groups', [RoleController::class, 'store']);
 });
+
+
+
 
 //Auth
 Route::post('login', LoginController::class);
